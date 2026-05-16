@@ -1,7 +1,7 @@
 let transactions = JSON.parse(localStorage.getItem('transactions')) || [];
 
 const form = document.getElementById('transactionForm');
-const aiForm = document.querySelector('gigachat-form');
+const aiForm = document.getElementById('gigachat-form');
 const listContainer = document.getElementById('transactionList');
 const emptyState = document.getElementById('emptyState');
 
@@ -17,16 +17,26 @@ const themeToggle = document.getElementById('themeToggle');
 
 document.getElementById('date').value = new Date().toISOString().split('T')[0];
 
-aiForm.addEventListener('submit', (e) => {
+aiForm.addEventListener('submit', async (e) => {
     e.preventDefault();
 
     const text = document.getElementById('ai_question_text').value;
     if(!text) {
         alert('Пожалуйста введите текст');
+        return;
     }
 
-    const filePath 
-
+    try {
+        const responseEl = document.getElementById('ai_response');
+        if (responseEl) responseEl.textContent = 'Запрос обрабатывается нейросетью...';
+        
+        const answer = await sendGigaChatMessageFinances({ userComment: text });
+        
+        if (responseEl) responseEl.textContent = answer;
+    } catch (error) {
+        const responseEl = document.getElementById('ai_response');
+        if (responseEl) responseEl.textContent = 'Ошибка: ' + error.message;
+    }
 });
 
 form.addEventListener('submit', (e) => {
@@ -146,13 +156,11 @@ function saveAndRefresh() {
     renderTransactions();
 }
 
-exportCsvBtn.addEventListener('click', () => {
+exportCsvBtn.addEventListener('click', async () => {
     const csvContent = await writeCsv();
     const userData = {
-        file: csvContent,
-
-    }
-
+        file: csvContent
+    };
 });
 
 async function writeCsv() {
@@ -420,4 +428,4 @@ async function main() {
   } catch (error) {
     console.error('критическая ошибка:', error.message);
   }
-}
+} 
