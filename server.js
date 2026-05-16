@@ -10,8 +10,8 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-const clientId = "019e300a-df6e-70f6-8bcf-133c00bece7f";
-const clientSecret = "d7b7c90d-0409-435e-b08f-1d7397517728";
+const clientId = process.env.GIGACHAT_CLIENT_ID ;
+const clientSecret = process.env.GIGACHAT_CLIENT_SECRET;
 
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0'; 
 

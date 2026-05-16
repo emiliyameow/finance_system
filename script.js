@@ -15,7 +15,6 @@ const sortOrder = document.getElementById('sortOrder');
 const exportCsvBtn = document.getElementById('exportCsvBtn');
 const themeToggle = document.getElementById('themeToggle');
 
-// Переменные для графиков Chart.js
 let incomeExpenseChartInstance = null;
 let categoriesChartInstance = null;
 
@@ -23,7 +22,6 @@ if(document.getElementById('date')) {
     document.getElementById('date').value = new Date().toISOString().split('T')[0];
 }
 
-// Обработка запроса к ИИ с поддержкой Markdown
 aiForm.addEventListener('submit', async (e) => {
     e.preventDefault();
 
@@ -99,15 +97,13 @@ function updateStats() {
     if(monthExpensesEl) monthExpensesEl.textContent = '-' + monthExpenses.toLocaleString('ru-RU') + ' ₽';
 }
 
-// ФУНКЦИЯ ОБНОВЛЕНИЯ ГРАФИКОВ
+
 function updateCharts() {
     const currentMonthStr = new Date().toISOString().slice(0, 7);
     
-    // Данные для первого графика (Доходы vs Расходы за месяц)
     const monthIncome = transactions.filter(t => t.type === 'income' && t.date.startsWith(currentMonthStr)).reduce((sum, t) => sum + t.amount, 0);
     const monthExpenses = transactions.filter(t => t.type === 'expense' && t.date.startsWith(currentMonthStr)).reduce((sum, t) => sum + t.amount, 0);
 
-    // Данные для второго графика (Расходы по категориям)
     const categoriesData = { 'еда': 0, 'транспорт': 0, 'развлечения': 0, 'учёба': 0, 'другое': 0 };
     transactions.filter(t => t.type === 'expense').forEach(t => {
         if (categoriesData[t.category] !== undefined) {
@@ -120,7 +116,6 @@ function updateCharts() {
     const isDark = document.documentElement.getAttribute('data-bs-theme') === 'dark';
     const textColor = isDark ? '#f8f9fa' : '#212529';
 
-    // 1. График: Доходы vs Расходы (Bar / Столбчатый)
     const ctxIE = document.getElementById('incomeExpenseChart');
     if (ctxIE) {
         if (incomeExpenseChartInstance) incomeExpenseChartInstance.destroy();
@@ -148,7 +143,6 @@ function updateCharts() {
         });
     }
 
-    // 2. График: Категории (Doughnut / Пончик)
     const ctxCat = document.getElementById('categoriesChart');
     if (ctxCat) {
         if (categoriesChartInstance) categoriesChartInstance.destroy();
@@ -232,7 +226,7 @@ function saveAndRefresh() {
     localStorage.setItem('transactions', JSON.stringify(transactions));
     updateStats();
     renderTransactions();
-    updateCharts(); // Перерисовываем графики при изменениях данных
+    updateCharts();
 }
 
 if (exportCsvBtn) {
@@ -258,7 +252,6 @@ function writeCsv() {
     document.body.removeChild(link);
 }
 
-// Тема оформления
 const savedTheme = localStorage.getItem('theme') || 'light';
 document.documentElement.setAttribute('data-bs-theme', savedTheme);
 updateThemeIcon(savedTheme);
@@ -270,7 +263,7 @@ if (themeToggle) {
         document.documentElement.setAttribute('data-bs-theme', newTheme);
         localStorage.setItem('theme', newTheme);
         updateThemeIcon(newTheme);
-        updateCharts(); // Перерисовываем графики под новую цветовую гамму текста
+        updateCharts(); 
     });
 }
 
@@ -287,5 +280,5 @@ if(sortOrder) sortOrder.addEventListener('change', renderTransactions);
 window.addEventListener('load', () => {
     updateStats();
     renderTransactions();
-    updateCharts(); // Первая сборка графиков при старте приложения
+    updateCharts(); 
 });
