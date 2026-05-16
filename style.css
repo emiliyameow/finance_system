@@ -64,7 +64,11 @@ tbody tr:hover {
 
 #yellow-button 
 {
-    background-color: rgba(246,247,248);
+    background-color: rgba(255,221,45);
+}
+
+#logo {
+    max-width: 150px;
 }
 
 @media (max-width: 768px) {
