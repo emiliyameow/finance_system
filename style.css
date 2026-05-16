@@ -1,0 +1,83 @@
+body {
+    background-color: #f8f9fa;
+    min-height: 100vh;
+    transition: background-color 0.3s ease;
+}
+
+[data-bs-theme="dark"] body {
+    background-color: #1a1d20;
+}
+
+.card {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+}
+
+.border-primary {
+    border-left-width: 4px !important;
+}
+
+.border-success {
+    border-left-width: 4px !important;
+}
+
+.border-danger {
+    border-left-width: 4px !important;
+}
+
+tbody tr {
+    transition: background-color 0.15s ease;
+}
+
+tbody tr:hover {
+    background-color: rgba(0, 0, 0, 0.02);
+}
+
+[data-bs-theme="dark"] tbody tr:hover {
+    background-color: rgba(255, 255, 255, 0.04);
+}
+
+/* Стили для суммы */
+.amount-income {
+    color: #198754;
+    font-weight: 500;
+}
+
+.amount-expense {
+    color: #dc3545;
+    font-weight: 500;
+}
+
+
+.delete-btn {
+    opacity: 0.6;
+    transition: opacity 0.15s ease;
+}
+
+.delete-btn:hover {
+    opacity: 1;
+}
+
+#yellow-button 
+{
+    background-color: rgba(246,247,248);
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding-left: 12px;
+        padding-right: 12px;
+    }
+    
+    .card-title {
+        font-size: 1.5rem;
+    }
+    
+    .btn-group {
+        width: 100%;
+    }
+}

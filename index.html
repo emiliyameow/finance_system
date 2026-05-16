@@ -15,7 +15,6 @@
                 <i class="bi bi-wallet2 me-2"></i>Т-Банк <span class="fw-normal text-body-secondary">| Мои финансы</span>
             </span>
             <div class="d-flex align-items-center gap-3">
-                <!-- Бонус: Переключатель темы -->
                 <button id="themeToggle" class="btn btn-outline-secondary btn-sm">
                     <i id="themeIcon" class="bi bi-moon-fill"></i>
                 </button>
@@ -52,7 +51,6 @@
         </div>
 
         <div class="row g-4">
-            <!-- Фича 1: Форма добавления транзакций -->
             <div class="col-lg-4">
                 <div class="card shadow-sm p-4 border-0">
                     <h5 class="fw-bold mb-3">Новая транзакция</h5>
@@ -75,7 +73,7 @@
 
                         <div class="mb-3">
                             <label for="category" class="form-label">Категория</label>
-<select class="form-select" id="category" required>
+                                <select class="form-select" id="category" required>
                                 <option value="" disabled selected>Выберите категорию</option>
                                 <option value="еда">Еда</option>
                                 <option value="транспорт">Транспорт</option>
@@ -95,23 +93,20 @@
                             <textarea class="form-control" id="comment" rows="2" placeholder="Необязательно..."></textarea>
                         </div>
 
-                        <button type="submit" class="btn btn-warning w-100 fw-bold">Добавить</button>
+                        <button type="submit" class="btn btn-warning w-100 fw-bold" id="yellow-button">Добавить</button>
                     </form>
                 </div>
             </div>
 
-            <!-- Фича 2 + Бонусы: Панель фильтров и Список транзакций -->
             <div class="col-lg-8">
                 <div class="card shadow-sm p-4 border-0 h-100">
                     <div class="d-flex flex-wrap justify-content-between align-items-center gap-3 mb-3">
                         <h5 class="fw-bold m-0">История операций</h5>
-                        <!-- Бонус: Экспорт в CSV -->
                         <button id="exportCsvBtn" class="btn btn-sm btn-outline-primary">
                             <i class="bi bi-download me-1"></i> Экспорт в CSV
                         </button>
                     </div>
 
-                    <!-- Блок бонусных фильтров и сортировки -->
                     <div class="row g-2 mb-3 bg-body-tertiary p-2 rounded">
                         <div class="col-sm-4">
                             <select id="filterType" class="form-select form-select-sm">
@@ -140,7 +135,6 @@
                         </div>
                     </div>
 
-                    <!-- Таблица транзакций -->
                     <div class="table-responsive">
                         <table class="table table-hover align-middle">
                             <thead>
@@ -153,7 +147,6 @@
                                 </tr>
                             </thead>
                             <tbody id="transactionList">
-                                <!-- Рендерится через JS -->
                             </tbody>
                         </table>
                         <div id="emptyState" class="text-center text-muted py-4 d-none">
