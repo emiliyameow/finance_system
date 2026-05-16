@@ -209,5 +209,3 @@ async function main() {
     console.error('критическая ошибка:', error.message);
   }
 }
-
-main();
