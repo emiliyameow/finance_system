@@ -41,7 +41,6 @@ tbody tr:hover {
     background-color: rgba(255, 255, 255, 0.04);
 }
 
-/* Стили для суммы */
 .amount-income {
     color: #198754;
     font-weight: 500;
@@ -51,7 +50,6 @@ tbody tr:hover {
     color: #dc3545;
     font-weight: 500;
 }
-
 
 .delete-btn {
     opacity: 0.6;

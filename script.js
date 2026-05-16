@@ -217,25 +217,25 @@ window.addEventListener('load', () => {
     updateStats();
     renderTransactions();
 });
+let cachedToken = null;
 
+const clientId = "019e300a-df6e-70f6-8bcf-133c00bece7f";
+const clientSecret = "d7b7c90d-0409-435e-b08f-1d7397517728";
 
+process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0'; 
 require('dotenv').config();
 const fs = require('fs').promises; 
 const path = require('path');
 const crypto = require('crypto');
 const fetch = require('node-fetch');
 
-const clientId = process.env.GIGACHAT_CLIENT_ID ;
-const clientSecret = process.env.GIGACHAT_CLIENT_SECRET;
 
-process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0'; 
-let cachedToken = null;
 
 async function getAccessToken() {
   if (cachedToken && cachedToken.expiresAt > Date.now() + 60000) {
     return cachedToken.value;
   }
-
+    let Buffer = require("buffer").Buffer;
   console.log('client IDDDDDD:', clientId, clientSecret); 
   const authString = Buffer.from(`${clientId}:${clientSecret}`).toString('base64');
   const rqUid = crypto.randomUUID(); 
@@ -266,7 +266,6 @@ const response = await fetch('https://ngw.devices.sberbank.ru:9443/api/v2/oauth'
   return cachedToken.value;
   console.log('authString:', authString); 
 }
-
 
 async function sendGigaChatMessage(prompt) {
   try {
